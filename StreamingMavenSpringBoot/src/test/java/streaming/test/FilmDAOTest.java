@@ -29,27 +29,26 @@ public class FilmDAOTest {
     @Autowired
     private FilmDAO dao;
     
-    @Before
-    @Transactional
-    public void avant (){
-        //supprime tout les films
-        dao.deleteAll();
-        
-        //ajoute 2 film
-        dao.save(new Film(1L, "La communauté de l'anneau", "Bilbon prend sa retraite, Frodon doit partir ...", 2008, 210));
-        dao.save(new Film(2L, "Les deux tours", "Frodon par avec Sam, la communauté est séparée ...", 2009, 180));
-        dao.save(new Film(3L, "Le retour du roi", "Les terres du milieux ce réveillent, Sauron est en mauvaise posture ...", 2010, 270));
-    }
-    
     @Test
-    public void testTroisFilms(){
-        Film one = dao.findOne(1L);
-        Film two = dao.findOne(2L);
-        Film three = dao.findOne(3L);
+    public void testFilms(){
         
-        Assert.assertEquals("La communauté de l'anneau", one.getTitre());
-        Assert.assertEquals("Les deux tours", two.getTitre());
-        Assert.assertEquals("Le retour du roi", three.getTitre());
+        Film f = new Film();
+        f.setTitre("Armageddon");
+        f.setAnnee(2003);
+        f.setDuree(120);
+        f.setSynopsis("bla bla bla");
+        f.setId(2015L);
+        
+        dao.save(f);
+        
+//        Assert.assertNotNull(dao.findOneByTitre("Les deux tours"));
+//        Assert.assertNotNull(dao.findAllByAnnee(1983));
+//        Assert.assertNotNull(dao.findAllByTitreOrAnnee("Les deuxze tours", 2016));
+//        Assert.assertNotNull(dao.findAllByTitreAndAnnee("Les deuxze tours", 2016));
+        
+        dao.delete(f);
+        
+        dao.deleteAll();
     }
     
 }

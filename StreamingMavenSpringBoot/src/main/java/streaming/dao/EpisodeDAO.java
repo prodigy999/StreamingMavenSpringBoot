@@ -5,6 +5,7 @@
  */
 package streaming.dao;
 
+import java.util.List;
 import org.springframework.data.repository.CrudRepository;
 import streaming.entity.Episode;
 
@@ -13,5 +14,7 @@ import streaming.entity.Episode;
  * @author ETY
  */
 public interface EpisodeDAO extends CrudRepository<Episode, Long>{
+    
+    public List<Episode> findAllBySaisonNumSaisonAndSaisonSerieTitreOrderByNumEpisode (String t, Integer n);
     
 }
